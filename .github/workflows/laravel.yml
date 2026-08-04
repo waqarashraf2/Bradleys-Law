@@ -110,7 +110,7 @@ jobs:
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
         run: |
           rsync -az --delete \
-            -e "ssh -i ~/.ssh/cpanel_deploy_key -p ${CPANEL_PORT:-22}" \
+            -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/cpanel_deploy_key -p ${CPANEL_PORT:-22}" \
             --exclude=".git/" \
             --exclude=".github/" \
             --exclude=".env" \
@@ -128,5 +128,5 @@ jobs:
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
         run: |
-          ssh -i ~/.ssh/cpanel_deploy_key -p "${CPANEL_PORT:-22}" "$CPANEL_USER@$CPANEL_HOST" \
+          ssh -o IdentitiesOnly=yes -i ~/.ssh/cpanel_deploy_key -p "${CPANEL_PORT:-22}" "$CPANEL_USER@$CPANEL_HOST" \
             "cd '$DEPLOY_PATH' && php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache"
