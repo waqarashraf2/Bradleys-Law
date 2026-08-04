@@ -15,7 +15,7 @@ jobs:
 
     env:
       APP_ENV: testing
-      APP_KEY: base64:YmFzZTY0ZW5jb2RlZHRlc3RpbmdhcHBrZXkxMjM0NTY3ODkwMTI=
+      APP_KEY: base64:GHh/hjGUUb+6MfPnqLKWW+8+oC8RD0asJAwqPDKqsOo=
       DB_CONNECTION: sqlite
       DB_DATABASE: database/database.sqlite
 
