@@ -9,7 +9,7 @@ class ServiceController extends Controller
 {
     public function index()
     {
-        $services = Service::orderBy('category')->get();
+        $services = Service::orderBy('id')->get();
         return view('pages.expertise', compact('services'));
     }
 

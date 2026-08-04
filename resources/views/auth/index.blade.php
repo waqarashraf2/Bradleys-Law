@@ -3,18 +3,30 @@
 @section('title', 'Login or Register — Bradleys Law')
 
 @section('content')
-<section class="flex justify-center items-center min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-12 px-4">
-  <div class="bg-white p-8 md:p-10 rounded-2xl shadow-xl w-full max-w-md transition-all duration-700 ease-in-out transform opacity-0 section-fade-in">
+
+
+<section 
+  class="flex justify-center items-center min-h-screen py-40 relative bg-fixed bg-center bg-cover overflow-hidden" 
+  style="background-image: url('https://tse4.mm.bing.net/th/id/OIP.y-JCbcWu_PkOmnJzr4e1KQHaE7?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3');"
+>
+  <!-- Dark overlay for contrast -->
+  <div class="absolute inset-0 bg-gradient-to-br from-[#0a0f1c]/90 via-[#1a2238]/85 to-[#0a0f1c]/90 py-40"></div>
+
+  <!-- Subtle glowing accent circles -->
+  <div class="absolute top-20 left-1/3 w-64 h-64 bg-[#c9a227]/10 rounded-full blur-3xl"></div>
+  <div class="absolute bottom-10 right-1/3 w-72 h-72 bg-[#c9a227]/10 rounded-full blur-3xl"></div>
+
+  <div class="relative bg-white/95 backdrop-blur-lg p-8 md:p-10 rounded-2xl shadow-2xl w-full max-w-md border border-[#c9a227]/30 transition-all duration-700 ease-in-out transform opacity-0 section-fade-in">
     <!-- Header Section -->
     <div class="text-center mb-8">
       <div class="flex justify-center mb-4">
-        <div class="w-12 h-12 bg-gradient-to-br from-[#0a1a3a] to-[#2c3e50] rounded-full flex items-center justify-center">
-          <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="w-12 h-12 bg-gradient-to-br from-[#1a2238] to-[#2c3e50] rounded-full flex items-center justify-center shadow-md shadow-[#c9a227]/30">
+          <svg class="w-6 h-6 text-[#f6f1e5]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
           </svg>
         </div>
       </div>
-      <h1 class="text-2xl md:text-3xl font-bold font-playfair text-gray-900" id="formTitle">Welcome Back</h1>
+      <h1 class="text-2xl md:text-3xl font-bold font-playfair text-[#1a2238]" id="formTitle">Welcome Back</h1>
       <p class="text-gray-600 mt-2 text-sm" id="formSubtitle">Sign in to your account to continue</p>
       <div class="w-16 h-1 bg-gradient-to-r from-[#c9a227] to-[#e6d18a] mx-auto mt-3 rounded-full"></div>
     </div>
@@ -48,107 +60,70 @@
       <div class="space-y-4">
         <div class="transition-all duration-500 ease-in-out form-group transform translate-y-4 opacity-0">
           <label class="block text-sm font-semibold text-gray-800 mb-2">Email Address</label>
-          <div class="relative">
-            <input 
-              type="email" 
-              name="email" 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent" 
-              placeholder="your@email.com" 
-              required
-              style="color: #1a2238; background-color: white;"
-            >
-          </div>
+          <input type="email" name="email" placeholder="your@email.com" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent transition-all duration-300">
         </div>
 
         <div class="transition-all duration-500 ease-in-out form-group transform translate-y-4 opacity-0">
           <label class="block text-sm font-semibold text-gray-800 mb-2">Password</label>
-          <div class="relative">
-            <input 
-              type="password" 
-              name="password" 
-              class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent" 
-              placeholder="Enter your password" 
-              required
-              style="color: #1a2238; background-color: white;"
-            >
-          </div>
+          <input type="password" name="password" placeholder="Enter your password" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent transition-all duration-300">
         </div>
       </div>
 
-      <button type="submit" class="w-full bg-gradient-to-r from-[#0a1a3a] to-[#2c3e50] text-white py-3.5 rounded-lg font-semibold transition-all duration-500 ease-in-out transform translate-y-4 opacity-0 hover:from-[#1a2a4a] hover:to-[#3c4e60] hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl login-btn">
+      <button type="submit" 
+        class="w-full bg-gradient-to-r from-[#1a2238] to-[#2c3e50] text-white py-3.5 rounded-lg font-semibold transition-all duration-500 transform translate-y-4 opacity-0 hover:from-[#2a3350] hover:to-[#3c4e60] hover:scale-[1.03] shadow-lg hover:shadow-[#c9a227]/40 login-btn">
         Sign In
       </button>
     </form>
 
     <!-- REGISTER FORM -->
-    <form id="registerForm" method="POST" action="{{ route('auth.register') }}" class="space-y-6 transition-all duration-500 ease-in-out hidden">
+    <form id="registerForm" method="POST" action="{{ route('auth.register') }}" class="space-y-6 hidden transition-all duration-500 ease-in-out">
       @csrf
       <div class="space-y-4">
-        <div class="transition-all duration-500 ease-in-out form-group transform translate-y-4 opacity-0">
+        <div class="form-group transform translate-y-4 opacity-0">
           <label class="block text-sm font-semibold text-gray-800 mb-2">Full Name</label>
-          <input 
-            type="text" 
-            name="name" 
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent" 
-            placeholder="John Doe" 
-            required
-            style="color: #1a2238; background-color: white;"
-          >
+          <input type="text" name="name" placeholder="John Doe" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9a227]">
         </div>
 
-        <div class="transition-all duration-500 ease-in-out form-group transform translate-y-4 opacity-0">
+        <div class="form-group transform translate-y-4 opacity-0">
           <label class="block text-sm font-semibold text-gray-800 mb-2">Email Address</label>
-          <input 
-            type="email" 
-            name="email" 
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent" 
-            placeholder="your@email.com" 
-            required
-            style="color: #1a2238; background-color: white;"
-          >
+          <input type="email" name="email" placeholder="your@email.com" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9a227]">
         </div>
 
-        <div class="transition-all duration-500 ease-in-out form-group transform translate-y-4 opacity-0">
+        <div class="form-group transform translate-y-4 opacity-0">
           <label class="block text-sm font-semibold text-gray-800 mb-2">Password</label>
-          <input 
-            type="password" 
-            name="password" 
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent" 
-            placeholder="Create a strong password" 
-            required
-            style="color: #1a2238; background-color: white;"
-          >
+          <input type="password" name="password" placeholder="Create a strong password" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9a227]">
         </div>
 
-        <div class="transition-all duration-500 ease-in-out form-group transform translate-y-4 opacity-0">
+        <div class="form-group transform translate-y-4 opacity-0">
           <label class="block text-sm font-semibold text-gray-800 mb-2">Confirm Password</label>
-          <input 
-            type="password" 
-            name="password_confirmation" 
-            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent" 
-            placeholder="Confirm your password" 
-            required
-            style="color: #1a2238; background-color: white;"
-          >
+          <input type="password" name="password_confirmation" placeholder="Confirm your password" required
+            class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9a227]">
         </div>
       </div>
 
-      <button type="submit" class="w-full bg-gradient-to-r from-[#0a1a3a] to-[#2c3e50] text-white py-3.5 rounded-lg font-semibold transition-all duration-500 ease-in-out transform translate-y-4 opacity-0 hover:from-[#1a2a4a] hover:to-[#3c4e60] hover:scale-[1.02] active:scale-[0.98] shadow-lg hover:shadow-xl register-btn">
+      <button type="submit" 
+        class="w-full bg-gradient-to-r from-[#1a2238] to-[#2c3e50] text-white py-3.5 rounded-lg font-semibold transition-all duration-500 transform translate-y-4 opacity-0 hover:from-[#2a3350] hover:to-[#3c4e60] hover:scale-[1.03] shadow-lg hover:shadow-[#c9a227]/40 register-btn">
         Create Account
       </button>
     </form>
 
     <!-- Toggle Section -->
-    <div class="text-center mt-8 pt-6 border-t border-gray-200 transition-all duration-500 ease-in-out">
+    <div class="text-center mt-8 pt-6 border-t border-gray-200">
       <p class="text-sm text-gray-600">
         <span id="toggleText">Don't have an account?</span>
-        <button id="toggleLink" class="text-[#0a1a3a] font-semibold ml-1 transition-all duration-300 ease-in-out hover:text-[#c9a227] focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:ring-opacity-50 rounded px-2 py-1">
+        <button id="toggleLink" class="text-[#1a2238] font-semibold ml-1 transition-all duration-300 hover:text-[#c9a227] focus:outline-none focus:ring-2 focus:ring-[#c9a227]/50 rounded px-2 py-1">
           Sign up
         </button>
       </p>
     </div>
   </div>
 </section>
+
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

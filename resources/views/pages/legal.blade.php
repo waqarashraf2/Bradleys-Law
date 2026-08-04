@@ -4,15 +4,15 @@
 
 @section('content')
 <section 
-    class="relative overflow-hidden min-h-screen flex items-center justify-center py-10 px-4"
+    class="relative overflow-hidden min-h-screen flex items-center justify-center pt-30 pb-20 px-4"
     style="background-image: url('https://tse4.mm.bing.net/th/id/OIP.r2Rhfk8o1j3luE1W--HL1wHaE7?cb=12&rs=1&pid=ImgDetMain&o=7&rm=3'); background-size: cover; background-position: center;">
     
     <!-- Overlay -->
     <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
 
     <!-- Content -->
-    <div class="relative z-10 max-w-4xl mx-auto bg-white/95 rounded-2xl shadow-xl p-6 animate-fadeIn">
-        <h1 class="text-4xl font-playfair text-[#1a2238] mb-8 border-b border-[#c9a227]/40 pb-4 text-center">
+    <div class="relative z-10 max-w-4xl mx-auto bg-white/95 rounded-2xl shadow-xl p-5 animate-fadeIn">
+        <h1 class="text-3xl font-playfair text-[#1a2238] mb-8 border-b border-[#c9a227]/40 pb-4 text-center">
             Legal & Compliance
         </h1>
 

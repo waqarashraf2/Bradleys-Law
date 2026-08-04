@@ -11,7 +11,10 @@ class PageController extends Controller
     public function home()
     {
         // show featured services and latest insights on home
-        $services = Service::orderBy('id')->limit(3)->get();
+        $services = Service::whereIn('id', [4, 5, 6, 13])
+    ->orderBy('id')
+    ->get();
+
         $insights = Insight::latest('published_at')->limit(3)->get();
 
         return view('pages.home', compact('services', 'insights'));
