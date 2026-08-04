@@ -108,9 +108,10 @@ jobs:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
+          SSH_AUTH_SOCK: ''
         run: |
           rsync -az --delete \
-            -e "ssh -o IdentitiesOnly=yes -i ~/.ssh/cpanel_deploy_key -p ${CPANEL_PORT:-22}" \
+            -e "ssh -F /dev/null -o IdentityAgent=none -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -i ~/.ssh/cpanel_deploy_key -p ${CPANEL_PORT:-22}" \
             --exclude=".git/" \
             --exclude=".github/" \
             --exclude=".env" \
@@ -127,6 +128,7 @@ jobs:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
+          SSH_AUTH_SOCK: ''
         run: |
-          ssh -o IdentitiesOnly=yes -i ~/.ssh/cpanel_deploy_key -p "${CPANEL_PORT:-22}" "$CPANEL_USER@$CPANEL_HOST" \
+          ssh -F /dev/null -o IdentityAgent=none -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -i ~/.ssh/cpanel_deploy_key -p "${CPANEL_PORT:-22}" "$CPANEL_USER@$CPANEL_HOST" \
             "cd '$DEPLOY_PATH' && php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache"
