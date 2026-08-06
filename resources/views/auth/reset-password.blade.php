@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Set New Password - Bradleys Law')
+@section('robots', 'noindex, nofollow')
 
 @section('content')
 <section class="flex min-h-screen items-center justify-center bg-[#0a1a3a] px-6 py-32">

@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Insights — Bradleys Law')
-@section('meta_description', 'Explore expert legal insights, case analyses, and updates from Bradleys Law’s insurance and construction law specialists.')
+@section('canonical', route('insights'))
+@section('meta_description', 'Explore expert legal insights, case analyses, and updates from Bradleys Law insurance and construction law specialists.')
 
 @section('content')
 <section id="insights" class="relative overflow-hidden py-20 px-6 bg-[#f8f9fb]">

@@ -1,7 +1,26 @@
 @extends('layouts.app')
 
-@section('title', $service->title . ' — Bradleys Law')
+@section('title', $service->title . ' - Bradleys Law')
+@section('meta_description', Str::limit(strip_tags($service->summary ?? $service->excerpt ?? $service->content ?? ('Specialist legal advice from Bradleys Law on ' . $service->title . '.')), 160))
+@section('canonical', route('expertise.show', $service->slug))
 
+@push('structured_data')
+<script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'Service',
+        'name' => $service->title,
+        'description' => Str::limit(strip_tags($service->summary ?? $service->excerpt ?? $service->content ?? $service->title), 250),
+        'provider' => [
+            '@type' => 'LegalService',
+            'name' => 'Bradleys Law',
+            'url' => url('/'),
+        ],
+        'areaServed' => 'United Kingdom',
+        'url' => route('expertise.show', $service->slug),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
 @section('content')
 <section id="service-detail" 
          class="relative overflow-hidden py-40 px-2 bg-cover bg-center bg-no-repeat"

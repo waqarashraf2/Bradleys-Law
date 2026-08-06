@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('title', 'Login or Register — Bradleys Law')
+@section('robots', 'noindex, nofollow')
 
 @section('content')
 

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Expertise — Bradleys Law')
+@section('meta_description', 'Explore Bradleys Law expertise in insurance litigation, construction law, professional indemnity, arbitration, adjudication, and commercial dispute resolution.')
+@section('canonical', route('expertise.index'))
 
 @section('content')
 <section id="expertise" 

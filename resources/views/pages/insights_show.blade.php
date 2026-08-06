@@ -2,7 +2,36 @@
 
 @section('title', $insight->title . ' | Bradleys Law')
 @section('meta_description', Str::limit(strip_tags($insight->excerpt ?? $insight->content), 160))
+@section('canonical', route('insights.show', $insight->slug))
+@section('og_type', 'article')
+@section('og_image', $insight->image_url)
 
+@push('structured_data')
+<script type="application/ld+json">
+    {!! json_encode([
+        '@context' => 'https://schema.org',
+        '@type' => 'Article',
+        'headline' => $insight->title,
+        'description' => Str::limit(strip_tags($insight->excerpt ?? $insight->content), 160),
+        'image' => $insight->image_url,
+        'author' => [
+            '@type' => 'Organization',
+            'name' => $insight->author ?: 'Bradleys Law',
+        ],
+        'publisher' => [
+            '@type' => 'Organization',
+            'name' => 'Bradleys Law',
+            'logo' => [
+                '@type' => 'ImageObject',
+                'url' => asset('images/bradleys-law-site-icon.png'),
+            ],
+        ],
+        'datePublished' => optional($insight->published_at)->toAtomString(),
+        'dateModified' => $insight->updated_at?->toAtomString(),
+        'mainEntityOfPage' => route('insights.show', $insight->slug),
+    ], JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+</script>
+@endpush
 @section('content')
 <section 
   class="relative py-44 px-6 bg-fixed bg-center bg-cover overflow-hidden"

@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <title>@yield('title', 'Admin Dashboard - Bradleys Law')</title>
     <link rel="icon" href="{{ asset('images/bradleys-law-site-icon.svg') }}?v=20260807" type="image/svg+xml">
     <link rel="alternate icon" href="{{ asset('favicon.ico') }}?v=20260807" sizes="any">

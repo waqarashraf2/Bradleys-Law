@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Contact — Bradleys Law')
+@section('meta_description', 'Contact Bradleys Law in London for specialist advice on insurance litigation, construction disputes, arbitration, adjudication, and commercial legal matters.')
+@section('canonical', route('contact'))
 
 @section('content')
 <section id="contact" 

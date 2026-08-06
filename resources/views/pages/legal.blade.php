@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Legal & Compliance — Bradleys Law')
+@section('meta_description', 'Read Bradleys Law legal and compliance information, including regulatory details, privacy terms, and professional standards for the firm.')
+@section('canonical', route('legal'))
 
 @section('content')
 <section 

@@ -1,6 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'About Bradleys Law')
+@section('meta_description', 'Learn about Bradleys Law, a London law firm focused on insurance litigation, construction disputes, arbitration, adjudication, and specialist commercial legal advice.')
+@section('canonical', route('about'))
 
 @section('content')
 

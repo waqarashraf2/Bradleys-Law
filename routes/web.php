@@ -6,6 +6,7 @@ use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\InsightController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\SitemapController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\AdminNewsletterController;
 
@@ -25,6 +26,7 @@ Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->middl
 Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->middleware('guest')->name('password.reset');
 Route::post('/reset-password', [AuthController::class, 'resetPassword'])->middleware('guest')->name('password.update');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/sitemap.xml', SitemapController::class)->name('sitemap');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
     Route::get('/dashboard', [AdminController::class, 'index'])->name('dashboard');

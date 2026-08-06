@@ -1,15 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @php
+        $seoTitle = trim($__env->yieldContent('title', 'Bradleys Law | Insurance & Construction Law Specialists'));
+        $seoDescription = trim($__env->yieldContent('meta_description', 'Bradleys Law Ltd - expert solicitors in insurance litigation, construction law, commercial disputes, arbitration, and legal compliance in London.'));
+        $seoRobots = trim($__env->yieldContent('robots', 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1'));
+        $seoCanonical = trim($__env->yieldContent('canonical', url()->current()));
+        $seoImage = trim($__env->yieldContent('og_image', asset('images/bradleys-law-site-icon.png')));
+        $seoType = trim($__env->yieldContent('og_type', 'website'));
+        $organizationSchema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'LegalService',
+            'name' => 'Bradleys Law',
+            'url' => url('/'),
+            'logo' => asset('images/bradleys-law-site-icon.png'),
+            'image' => asset('images/bradleys-law-site-icon.png'),
+            'email' => 'info@bradleyslaw.com',
+            'telephone' => '07747767444',
+            'address' => [
+                '@type' => 'PostalAddress',
+                'streetAddress' => '22 Bishopsgate',
+                'addressLocality' => 'London',
+                'postalCode' => 'EC2N 4BQ',
+                'addressCountry' => 'GB',
+            ],
+            'areaServed' => 'United Kingdom',
+            'priceRange' => '$$',
+        ];
+    @endphp
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="robots" content="index, follow">
-    <meta property="og:title" content="@yield('title', 'Bradleys Law | Insurance & Construction Law Specialists')">
-    <meta property="og:description" content="@yield('meta_description', 'Bradleys Law Ltd — Expert Solicitors in Insurance Litigation and Construction Law, London.')">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="{{ url()->current() }}">
-    {{-- <meta property="og:image" content="{{ asset('images/bradleyslaw-og.jpg') }}"> --}}
+    <title>{{ $seoTitle }}</title>
+    <meta name="description" content="{{ $seoDescription }}">
+    <meta name="robots" content="{{ $seoRobots }}">
+    <meta name="author" content="Bradleys Law">
+    <meta name="application-name" content="Bradleys Law">
+    <link rel="canonical" href="{{ $seoCanonical }}">
+    <meta property="og:site_name" content="Bradleys Law">
+    <meta property="og:title" content="{{ $seoTitle }}">
+    <meta property="og:description" content="{{ $seoDescription }}">
+    <meta property="og:type" content="{{ $seoType }}">
+    <meta property="og:url" content="{{ $seoCanonical }}">
+    <meta property="og:image" content="{{ $seoImage }}">
+    <meta property="og:image:alt" content="Bradleys Law">
+    <meta property="og:locale" content="en_GB">
     <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $seoTitle }}">
+    <meta name="twitter:description" content="{{ $seoDescription }}">
+    <meta name="twitter:image" content="{{ $seoImage }}">
+    <script type="application/ld+json">
+        {!! json_encode($organizationSchema, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) !!}
+    </script>
+    @stack('structured_data')
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>

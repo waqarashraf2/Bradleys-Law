@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('title', 'Bradleys Law — Insurance Litigation & Construction Law')
-@section('meta_description', 'Bradleys Law Ltd — Expert Solicitors in Insurance Litigation and Construction Law, London.')
+@section('canonical', route('home'))
+@section('meta_description', 'Bradleys Law Ltd - expert solicitors in insurance litigation, construction law, arbitration, adjudication, and commercial disputes in London.')
 
 @section('content')
 
