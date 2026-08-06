@@ -7,6 +7,7 @@ use App\Http\Controllers\InsightController;
 use App\Http\Controllers\MessageController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\AdminNewsletterController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,6 +28,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('/insights', App\Http\Controllers\Admin\AdminInsightController::class);
     Route::resource('/messages', App\Http\Controllers\Admin\AdminMessageController::class)->only(['index', 'destroy']);
     Route::resource('/users', App\Http\Controllers\Admin\AdminUserController::class)->only(['index', 'destroy']);
+    Route::get('/newsletter', [AdminNewsletterController::class, 'index'])->name('newsletter.index');
 });
 
 

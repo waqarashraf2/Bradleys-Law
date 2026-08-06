@@ -49,6 +49,7 @@
                 <a href="{{ route('admin.dashboard') }}" class="block py-2.5 px-4 rounded-lg hover:bg-[#1e3a5f] transition">Dashboard</a>
                 <a href="{{ route('admin.services.index') }}" class="block py-2.5 px-4 rounded-lg hover:bg-[#1e3a5f] transition">Services</a>
                 <a href="{{ route('admin.insights.index') }}" class="block py-2.5 px-4 rounded-lg hover:bg-[#1e3a5f] transition">Insights</a>
+                <a href="{{ route('admin.newsletter.index') }}" class="block py-2.5 px-4 rounded-lg hover:bg-[#1e3a5f] transition">Newsletter</a>
                 <a href="{{ route('admin.messages.index') }}" class="block py-2.5 px-4 rounded-lg hover:bg-[#1e3a5f] transition">Messages</a>
                 <a href="{{ route('admin.users.index') }}" class="block py-2.5 px-4 rounded-lg hover:bg-[#1e3a5f] transition">Users</a>
             </nav>
