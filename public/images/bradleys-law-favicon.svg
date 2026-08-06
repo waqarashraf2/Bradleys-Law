@@ -1,7 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="Bradleys Law">
   <rect width="512" height="512" fill="#ffffff"/>
-  <rect x="40" y="40" width="432" height="432" rx="28" fill="#ffffff" stroke="#0a1a3a" stroke-width="10"/>
-  <text x="256" y="250" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, 'Times New Roman', serif" font-size="54" font-weight="700" letter-spacing="0">
+  <text x="256" y="250" text-anchor="middle" dominant-baseline="middle" font-family="Georgia, 'Times New Roman', serif" font-size="64" font-weight="700" letter-spacing="0">
     <tspan fill="#0a1a3a">Bradleys</tspan><tspan fill="#c9a227">Law</tspan>
   </text>
 </svg>
