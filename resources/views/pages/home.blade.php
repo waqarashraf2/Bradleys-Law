@@ -395,6 +395,7 @@
 
 
 <!-- Newsletter Signup Section -->
+@if($newsletter)
 <section class="relative overflow-hidden bg-white py-20">
   <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(201,162,39,0.18),_transparent_34%),linear-gradient(135deg,_#ffffff_0%,_#f7f8fb_50%,_#eef2f7_100%)]"></div>
 
@@ -402,7 +403,7 @@
     <div class="grid gap-10 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
       <div>
         <span class="inline-flex rounded-full border border-[#c9a227]/30 bg-[#c9a227]/10 px-4 py-1.5 text-xs font-semibold uppercase tracking-[0.22em] text-[#8b6f18]">
-          {{ config('newsletter.frequency') }} newsletter
+          {{ $newsletter->frequency }} newsletter
         </span>
         <h2 class="mt-5 font-playfair text-3xl font-medium leading-tight text-[#0a1a3a] sm:text-4xl lg:text-5xl">
           Receive our popular weekly newsletter
@@ -411,13 +412,13 @@
 
       <div class="rounded-2xl border border-[#c9a227]/25 bg-white p-6 shadow-xl shadow-[#0a1a3a]/10 sm:p-8">
         <h3 class="font-playfair text-2xl font-semibold text-[#0a1a3a]">
-          "{{ config('newsletter.name') }}"
+          "{{ $newsletter->title }}"
         </h3>
         <p class="mt-4 text-base leading-relaxed text-gray-700">
-          {{ config('newsletter.description') }}
+          {{ $newsletter->summary }}
         </p>
         <div class="mt-7 flex flex-col gap-3 sm:flex-row sm:items-center">
-          <a href="{{ config('newsletter.url') }}" target="_blank" rel="noopener"
+          <a href="{{ $newsletter->signup_url }}" target="_blank" rel="noopener"
              class="inline-flex items-center justify-center rounded-md bg-[#0a1a3a] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#123061]">
             Click here to receive it
           </a>
@@ -427,6 +428,7 @@
     </div>
   </div>
 </section>
+@endif
 
 
 <section 

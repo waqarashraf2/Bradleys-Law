@@ -68,6 +68,11 @@
           <label class="block text-sm font-semibold text-gray-800 mb-2">Password</label>
           <input type="password" name="password" placeholder="Enter your password" required
             class="w-full px-4 py-3 border border-gray-300 rounded-lg bg-white text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-[#c9a227] focus:border-transparent transition-all duration-300">
+          <div class="mt-2 text-right">
+            <a href="{{ route('password.request') }}" class="text-xs font-semibold text-[#1a2238] hover:text-[#c9a227]">
+              Forgot password?
+            </a>
+          </div>
         </div>
       </div>
 

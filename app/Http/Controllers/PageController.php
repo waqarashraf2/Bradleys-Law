@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Service;
 use App\Models\Insight;
+use App\Models\Newsletter;
 
 class PageController extends Controller
 {
@@ -17,7 +18,12 @@ class PageController extends Controller
 
         $insights = Insight::latest('published_at')->limit(3)->get();
 
-        return view('pages.home', compact('services', 'insights'));
+        $newsletter = Newsletter::query()
+            ->where('is_active', true)
+            ->latest('id')
+            ->first();
+
+        return view('pages.home', compact('services', 'insights', 'newsletter'));
     }
 
     public function about()

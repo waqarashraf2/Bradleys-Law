@@ -20,6 +20,10 @@ use App\Http\Controllers\Admin\AdminNewsletterController;
 Route::get('/auth', [AuthController::class, 'showAuthForm'])->name('auth.form');
 Route::post('/auth/login', [AuthController::class, 'login'])->name('auth.login');
 Route::post('/auth/register', [AuthController::class, 'register'])->name('auth.register');
+Route::get('/forgot-password', [AuthController::class, 'showForgotPasswordForm'])->middleware('guest')->name('password.request');
+Route::post('/forgot-password', [AuthController::class, 'sendResetLink'])->middleware('guest')->name('password.email');
+Route::get('/reset-password/{token}', [AuthController::class, 'showResetPasswordForm'])->middleware('guest')->name('password.reset');
+Route::post('/reset-password', [AuthController::class, 'resetPassword'])->middleware('guest')->name('password.update');
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->group(function () {
@@ -29,6 +33,7 @@ Route::middleware(['auth', 'role:admin'])->prefix('admin')->name('admin.')->grou
     Route::resource('/messages', App\Http\Controllers\Admin\AdminMessageController::class)->only(['index', 'destroy']);
     Route::resource('/users', App\Http\Controllers\Admin\AdminUserController::class)->only(['index', 'destroy']);
     Route::get('/newsletter', [AdminNewsletterController::class, 'index'])->name('newsletter.index');
+    Route::put('/newsletter/{newsletter}', [AdminNewsletterController::class, 'update'])->name('newsletter.update');
 });
 
 
