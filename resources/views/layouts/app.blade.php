@@ -18,9 +18,9 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-    <link rel="icon" href="{{ asset('favicon.ico') }}" sizes="any">
-    <link rel="icon" href="{{ asset('images/bradleys-law-favicon.svg') }}" type="image/svg+xml">
-    <link rel="apple-touch-icon" href="{{ asset('images/bradleys-law-favicon.png') }}">
+    <link rel="icon" href="{{ asset('images/bradleys-law-site-icon.svg') }}?v=20260807" type="image/svg+xml">
+    <link rel="alternate icon" href="{{ asset('favicon.ico') }}?v=20260807" sizes="any">
+    <link rel="apple-touch-icon" href="{{ asset('images/bradleys-law-site-icon.png') }}?v=20260807">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     
