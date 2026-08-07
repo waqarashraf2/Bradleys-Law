@@ -7,7 +7,7 @@
 @section('content')
 <section id="contact" 
   class="relative overflow-hidden py-40 px-6 bg-cover bg-center bg-no-repeat"
-  style="background-image: url('https://bradleyslaw.com/storage/insights/bradly-about.jpeg');">
+  style="background-image: url('{{ asset('storage/insights/bradly-image.png') }}');">
 
   <!-- Dark Overlay -->
   <div class="absolute inset-0 bg-[#0a1a3a]/50"></div>
