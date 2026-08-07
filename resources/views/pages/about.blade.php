@@ -87,7 +87,7 @@
       <div class="relative flex justify-center md:justify-start mb-10 md:mb-0 md:w-1/3 lg:w-1/4 opacity-0 translate-x-[-40px] transition-all duration-700">
         <div class="absolute -inset-3 bg-gradient-to-tr from-[#c9a227]/40 to-transparent rounded-3xl blur-md"></div>
         <img 
-          src="{{ asset('storage/insights/bradly-ai.png') }}"
+          src="{{ asset('storage/insights/bradly-ai1.png') }}"
           alt="John Bradley - Managing Director"
           class="relative w-74 sm:w-82 lg:w-80 rounded-3xl shadow-2xl border border-[#c9a227]/30 transform hover:scale-[1.03] transition-transform duration-500"
         >
