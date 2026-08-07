@@ -1,19 +1,13 @@
 <IfModule mod_rewrite.c>
-    RewriteEngine on
+    RewriteEngine On
 
-    # Redirect www to non-www and enforce HTTPS
-    RewriteCond %{HTTP_HOST} ^www\. [NC,OR]
-    RewriteCond %{HTTPS} off
-    RewriteRule ^ https://bradleyslaw.com%{REQUEST_URI} [L,R=301,NE]
+    # Let existing files and directories be served directly.
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
 
-    # Handle Laravel routing
-    RewriteCond %{REQUEST_URI} !^public
+    # Route all other requests to Laravel's public directory.
     RewriteRule ^(.*)$ public/$1 [L]
-
-    # Handle Laravel routing for non-existing directories and files
-    RewriteCond %{REQUEST_FILENAME} !-d
-    RewriteCond %{REQUEST_FILENAME} !-f
-    RewriteRule ^ index.php [L]
 </IfModule>
 
 # Disable Directory listing
