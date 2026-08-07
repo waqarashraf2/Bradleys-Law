@@ -62,7 +62,7 @@ jobs:
     name: Deploy to Bluehost
     runs-on: ubuntu-latest
     needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.CPANEL_HOST != '' && secrets.CPANEL_USER != '' && secrets.CPANEL_SSH_KEY != ''
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     env:
       DEPLOY_PATH: /home1/uwihuxmy/public_html/website_0a903c07
@@ -93,6 +93,17 @@ jobs:
       - name: Build frontend assets
         run: npm run build
 
+      - name: Validate deployment secrets
+        env:
+          CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
+          CPANEL_USER: ${{ secrets.CPANEL_USER }}
+          CPANEL_SSH_KEY: ${{ secrets.CPANEL_SSH_KEY }}
+        run: |
+          if [ -z "$CPANEL_HOST" ] || [ -z "$CPANEL_USER" ] || [ -z "$CPANEL_SSH_KEY" ]; then
+            echo "Missing required deployment secrets: CPANEL_HOST, CPANEL_USER, or CPANEL_SSH_KEY"
+            exit 1
+          fi
+
       - name: Configure SSH
         env:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
@@ -103,6 +114,15 @@ jobs:
           printf '%s\n' "$CPANEL_SSH_KEY" > ~/.ssh/cpanel_deploy_key
           chmod 600 ~/.ssh/cpanel_deploy_key
           ssh-keyscan -p "${CPANEL_PORT:-22}" "$CPANEL_HOST" >> ~/.ssh/known_hosts
+
+      - name: Create deployment directory
+        env:
+          CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
+          CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
+          CPANEL_USER: ${{ secrets.CPANEL_USER }}
+          SSH_AUTH_SOCK: ""
+        run: |
+          ssh -F /dev/null -o IdentityAgent=none -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -i ~/.ssh/cpanel_deploy_key -p "${CPANEL_PORT:-22}" "$CPANEL_USER@$CPANEL_HOST" "mkdir -p '$DEPLOY_PATH'"
 
       - name: Sync files to cPanel
         env:
