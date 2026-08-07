@@ -1,4 +1,4 @@
-name: Laravel CI/CD
+name: Laravel CI/CD (cPanel/BlueHost)
 
 on:
   workflow_dispatch:
@@ -100,7 +100,8 @@ jobs:
           CPANEL_SSH_KEY: ${{ secrets.CPANEL_SSH_KEY }}
         run: |
           if [ -z "$CPANEL_HOST" ] || [ -z "$CPANEL_USER" ] || [ -z "$CPANEL_SSH_KEY" ]; then
-            echo "Missing required deployment secrets: CPANEL_HOST, CPANEL_USER, or CPANEL_SSH_KEY"
+            echo "Deployment failed: required cPanel/BlueHost secrets are missing."
+            echo "Add CPANEL_HOST, CPANEL_USER, and CPANEL_SSH_KEY to GitHub repository secrets."
             exit 1
           fi
 
