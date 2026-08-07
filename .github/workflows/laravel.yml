@@ -1,6 +1,7 @@
 name: Laravel CI/CD
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
@@ -26,14 +27,14 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: "8.2"
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath
           coverage: none
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
           cache: npm
 
       - name: Install Composer dependencies
@@ -61,7 +62,7 @@ jobs:
     name: Deploy to Bluehost
     runs-on: ubuntu-latest
     needs: test
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main' && secrets.CPANEL_HOST != '' && secrets.CPANEL_USER != '' && secrets.CPANEL_SSH_KEY != ''
 
     env:
       DEPLOY_PATH: /home1/uwihuxmy/public_html/website_0a903c07
@@ -73,14 +74,14 @@ jobs:
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
         with:
-          php-version: '8.2'
+          php-version: "8.2"
           extensions: dom, curl, libxml, mbstring, zip, pcntl, pdo, sqlite, pdo_sqlite, bcmath
           coverage: none
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '22'
+          node-version: "22"
           cache: npm
 
       - name: Install production Composer dependencies
@@ -108,7 +109,7 @@ jobs:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
-          SSH_AUTH_SOCK: ''
+          SSH_AUTH_SOCK: ""
         run: |
           rsync -az --delete \
             -e "ssh -F /dev/null -o IdentityAgent=none -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -i ~/.ssh/cpanel_deploy_key -p ${CPANEL_PORT:-22}" \
@@ -128,7 +129,7 @@ jobs:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
-          SSH_AUTH_SOCK: ''
+          SSH_AUTH_SOCK: ""
         run: |
           ssh -F /dev/null -o IdentityAgent=none -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -i ~/.ssh/cpanel_deploy_key -p "${CPANEL_PORT:-22}" "$CPANEL_USER@$CPANEL_HOST" \
             "cd '$DEPLOY_PATH' && php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache"
