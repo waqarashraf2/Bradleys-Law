@@ -65,7 +65,7 @@ jobs:
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
 
     env:
-      DEPLOY_PATH: /home1/uwihuxmy/public_html/website_0a903c07
+      DEPLOY_PATH: ${{ vars.CPANEL_DEPLOY_PATH }}
 
     steps:
       - name: Checkout code
@@ -98,12 +98,18 @@ jobs:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
           CPANEL_SSH_KEY: ${{ secrets.CPANEL_SSH_KEY }}
+          CPANEL_DEPLOY_PATH: ${{ vars.CPANEL_DEPLOY_PATH }}
         run: |
           if [ -z "$CPANEL_HOST" ] || [ -z "$CPANEL_USER" ] || [ -z "$CPANEL_SSH_KEY" ]; then
             echo "Deployment failed: required cPanel/BlueHost secrets are missing."
             echo "Add CPANEL_HOST, CPANEL_USER, and CPANEL_SSH_KEY to GitHub repository secrets."
             exit 1
           fi
+
+          DEPLOY_PATH="${CPANEL_DEPLOY_PATH:-/home1/uwihuxmy/public_html/website_0a903c07}"
+          echo "Deploying to: $DEPLOY_PATH"
+          echo "Using host: $CPANEL_HOST"
+          echo "Using user: $CPANEL_USER"
 
       - name: Configure SSH
         env:
@@ -123,6 +129,7 @@ jobs:
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
           SSH_AUTH_SOCK: ""
         run: |
+          DEPLOY_PATH="${CPANEL_DEPLOY_PATH:-/home1/uwihuxmy/public_html/website_0a903c07}"
           ssh -F /dev/null -o IdentityAgent=none -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -i ~/.ssh/cpanel_deploy_key -p "${CPANEL_PORT:-22}" "$CPANEL_USER@$CPANEL_HOST" "mkdir -p '$DEPLOY_PATH'"
 
       - name: Sync files to cPanel
@@ -130,8 +137,10 @@ jobs:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
+          CPANEL_DEPLOY_PATH: ${{ vars.CPANEL_DEPLOY_PATH }}
           SSH_AUTH_SOCK: ""
         run: |
+          DEPLOY_PATH="${CPANEL_DEPLOY_PATH:-/home1/uwihuxmy/public_html/website_0a903c07}"
           rsync -az --delete \
             -e "ssh -F /dev/null -o IdentityAgent=none -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -i ~/.ssh/cpanel_deploy_key -p ${CPANEL_PORT:-22}" \
             --exclude=".git/" \
@@ -150,7 +159,9 @@ jobs:
           CPANEL_HOST: ${{ secrets.CPANEL_HOST }}
           CPANEL_PORT: ${{ secrets.CPANEL_PORT }}
           CPANEL_USER: ${{ secrets.CPANEL_USER }}
+          CPANEL_DEPLOY_PATH: ${{ vars.CPANEL_DEPLOY_PATH }}
           SSH_AUTH_SOCK: ""
         run: |
+          DEPLOY_PATH="${CPANEL_DEPLOY_PATH:-/home1/uwihuxmy/public_html/website_0a903c07}"
           ssh -F /dev/null -o IdentityAgent=none -o IdentitiesOnly=yes -o PreferredAuthentications=publickey -o PasswordAuthentication=no -i ~/.ssh/cpanel_deploy_key -p "${CPANEL_PORT:-22}" "$CPANEL_USER@$CPANEL_HOST" \
             "cd '$DEPLOY_PATH' && php artisan migrate --force && php artisan config:cache && php artisan route:cache && php artisan view:cache"
